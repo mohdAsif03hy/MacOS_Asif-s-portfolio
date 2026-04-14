@@ -23,7 +23,7 @@ const Navbar = () => {
                 {
                     navIcons.map(({id,img})=>(
                         <li key={id}>
-                            <img src={img} alt={name} className='icon-hover' />
+                            <img src={img} alt={name} className='icons-hover' />
                         </li>
                     ))
                 }
