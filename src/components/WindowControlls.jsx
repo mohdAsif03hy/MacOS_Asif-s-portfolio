@@ -1,4 +1,4 @@
-import useWindowStore from '#store/window'
+import useWindowStore from '#store/window.js'
 import React from 'react'
 
 const WindowControlls = ({target}) => {
