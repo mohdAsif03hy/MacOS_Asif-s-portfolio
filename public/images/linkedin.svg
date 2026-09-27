@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="liBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0A84E3"/>
+      <stop offset="100%" stop-color="#0062A8"/>
+    </linearGradient>
+    <linearGradient id="liShine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.3"/>
+      <stop offset="40%" stop-color="#FFFFFF" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="liShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Squircle Base -->
+  <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#liBg)" stroke="#2B9DF4" stroke-width="1.5" filter="url(#liShadow)"/>
+
+  <!-- Top Glass Highlight -->
+  <rect x="9" y="9" width="110" height="55" rx="25" fill="url(#liShine)"/>
+
+  <!-- LinkedIn Official 'in' Shape -->
+  <g fill="#FFFFFF" transform="translate(64, 64) scale(0.68) translate(-50, -50)">
+    <circle cx="20" cy="18" r="9.5"/>
+    <rect x="10.5" y="34" width="19" height="58" rx="3.5"/>
+    <path d="M41 34 H59.5 V43 C62.5 37.5 69.5 32.5 81 32.5 C99 32.5 106 43 106 63 V92 H87 V66 C87 56 83.5 50 74 50 C64.5 50 60 57 60 66 V92 H41 V34 Z"/>
+  </g>
+</svg>

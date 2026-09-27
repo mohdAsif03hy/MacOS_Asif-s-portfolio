@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "macOS Web Portfolio System Architecture",
+    "output": "macos-portfolio-architecture.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "ui-shell",
+        "label": "Desktop UI & Windowing",
+        "focus": ["users", "shell", "store", "window_wrapper", "windows"],
+        "note": "User interactions drive Zustand state, triggering GSAP physics and window lifecycle."
+      },
+      {
+        "id": "live-sync",
+        "label": "Live API & Data Pipeline",
+        "focus": ["windows", "leetcode_api", "github_api", "store"],
+        "note": "Background asynchronous workers stream LeetCode & GitHub contributions with local fallback."
+      },
+      {
+        "id": "perf-layer",
+        "label": "Asset & Performance Tier",
+        "focus": ["users", "shell", "webp_engine", "pdf_engine"],
+        "note": "Ultra-light WebP preloading and dynamic code-splitting achieve 100% Core Web Vitals."
+      }
+    ]
+  },
+  "components": [
+    { "id": "users", "type": "external", "label": "Client Visitors", "sublabel": "Desktop & Mobile", "pos": [30, 250], "size": [120, 56] },
+    { "id": "shell", "type": "frontend", "label": "Desktop Shell", "sublabel": "Navbar • Dock • UI", "pos": [200, 250], "size": [130, 56], "tag": "Tailwind v4" },
+    { "id": "store", "type": "backend", "label": "Zustand State", "sublabel": "Z-Index • Windows", "pos": [380, 250], "size": [130, 56], "tag": "Immer Middleware" },
+    { "id": "window_wrapper", "type": "frontend", "label": "Window Wrapper", "sublabel": "GSAP Draggable", "pos": [560, 250], "size": [130, 56] },
+    { "id": "windows", "type": "frontend", "label": "App Windows", "sublabel": "Archive • Resume", "pos": [740, 250], "size": [130, 56], "tag": "Lazy Loaded" },
+    { "id": "webp_engine", "type": "cloud", "label": "Static Asset CDN", "sublabel": "WebP (32 KB)", "pos": [200, 110], "size": [130, 56] },
+    { "id": "leetcode_api", "type": "external", "label": "LeetCode API", "sublabel": "72d Streak Sync", "pos": [740, 110], "size": [130, 56] },
+    { "id": "github_api", "type": "external", "label": "GitHub API", "sublabel": "Commit Matrix", "pos": [740, 390], "size": [130, 56] },
+    { "id": "pdf_engine", "type": "backend", "label": "PDF Engine", "sublabel": "react-pdf Worker", "pos": [560, 390], "size": [130, 56] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Client Application Runtime (React 19 + GSAP)", "wraps": ["shell", "store", "window_wrapper", "windows", "pdf_engine"] },
+    { "kind": "security-group", "label": "Cloud & External APIs", "wraps": ["webp_engine", "leetcode_api", "github_api"] }
+  ],
+  "connections": [
+    { "id": "users-to-shell", "from": "users", "to": "shell", "label": "Events", "variant": "emphasis" },
+    { "id": "shell-to-store", "from": "shell", "to": "store", "label": "Actions" },
+    { "id": "store-to-wrapper", "from": "store", "to": "window_wrapper", "label": "Sync" },
+    { "id": "wrapper-to-windows", "from": "window_wrapper", "to": "windows", "label": "Mount" },
+    { "id": "shell-load-assets", "from": "shell", "to": "webp_engine", "label": "WebP", "variant": "dashed", "fromSide": "top", "toSide": "bottom", "labelDy": -15 },
+    { "id": "windows-fetch-lc", "from": "windows", "to": "leetcode_api", "label": "Streak", "variant": "dashed", "fromSide": "top", "toSide": "bottom", "labelDy": -15 },
+    { "id": "windows-fetch-gh", "from": "windows", "to": "github_api", "label": "Repos", "variant": "dashed", "fromSide": "bottom", "toSide": "top", "labelDy": 25 },
+    { "id": "wrapper-to-pdf", "from": "window_wrapper", "to": "pdf_engine", "label": "Worker", "fromSide": "bottom", "toSide": "top", "labelDy": 25 }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Interactive macOS Shell", "items": ["Physics-based GSAP Draggable titlebar windows", "Dynamic 3D specular tilt cards with custom shaders", "Multi-touch iPhone mobile experience"] },
+    { "dot": "emerald", "title": "Live Data Integration", "items": ["Real-time LeetCode 72-day streak & 52-week heatmap sync", "GitHub public repository & commit velocity matrix", "Graceful local cache fallback with zero layout shift"] },
+    { "dot": "rose", "title": "100% Lighthouse Performance", "items": ["Ultra-lightweight WebP image pipelines (95%+ payload cut)", "True on-demand code splitting (<120 KB initial bundle)", "WCAG Accessible controls with 0 CLS and 0 TBT"] }
+  ]
+}

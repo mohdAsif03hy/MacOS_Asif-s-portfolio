@@ -10,6 +10,7 @@ const useWindowStore = create(immer((set) => ({
         const win =  state.windows[windowKey];
         if(!win) return;
         win.isOpen = true;
+        win.hasBeenOpened = true;
         win.zIndex  = state.nextZIndex;
         win.data = data ?? win.data;
         state.nextZIndex++;
